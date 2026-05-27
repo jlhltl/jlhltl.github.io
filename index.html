@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tulossa pian</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #f2f5f0;
+      --warm: #dde8d8;
+      --gold: #b8963e;
+      --dark: #1e2d1f;
+      --muted: #6b826c;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark);
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Subtle grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.4;
+    }
+
+    /* Decorative circles */
+    .bg-circle {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .bg-circle-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(80,120,70,0.10) 0%, transparent 70%);
+      top: -150px;
+      right: -150px;
+    }
+    .bg-circle-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(184,150,62,0.07) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeUp 1.4s ease forwards;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: 1.2rem;
+      letter-spacing: 0.4em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.2s forwards;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem auto;
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.4s forwards;
+    }
+
+    .divider-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .divider-line:last-child {
+      background: linear-gradient(to left, transparent, var(--gold));
+    }
+
+    .divider-diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--dark);
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.3s forwards;
+    }
+
+    .year {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.5s forwards;
+    }
+
+    .subtitle {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(0.7rem, 2vw, 0.85rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.7s forwards;
+    }
+
+    .bottom-ornament {
+      margin-top: 3rem;
+      opacity: 0;
+      animation: fadeUp 1.4s ease 0.9s forwards;
+    }
+
+    .rings {
+      display: inline-flex;
+      gap: -4px;
+      align-items: center;
+    }
+
+    .ring {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: inline-block;
+    }
+    .ring:last-child {
+      margin-left: -6px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+
+  <div class="container">
+    <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+    <h1 class="title">Tulossa pian</h1>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="year">2026</div>
+
+    <p class="subtitle">Lisää tietoa pian</p>
+
+    <div class="bottom-ornament">
+      <div class="rings">
+        <div class="ring"></div>
+        <div class="ring"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
